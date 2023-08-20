@@ -1,18 +1,21 @@
-import React from 'react'
 import { Select, Typography, Row, Col, Avatar, Card} from 'antd';
 import moment from 'moment';
+import React, { useEffect, useState } from "react";
 import {useGetNewsQuery} from '..//services/BingAPI'
+import { useGetCryptosQuery } from '../services/CoinrankingAPI';
+import Loader from './Loader';
 
+const demoImage = 'https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid=News';
 const {Text , Title }  = Typography;
 const { Option } = Select;
 
 const News = ({simplified}) => {
-  const { data } = useGetNewsQuery(10);
-  const count = simplified ? 6: 12 
-  const { data: newsList} = useGetNewsQuery(count)
-  if (!newsList?.value) return 'Loading ...'
 
+  const [newsCategory, setNewsCategory] = useState('Cryptocurrency');
+  const { data } = useGetCryptosQuery(200);
+  const { data: newsList} = useGetNewsQuery({ newsCategory, count: simplified ? 6 : 12 })
 
+  if (!newsList?.value) return <Loader />;
   return (
 <Row gutter={[24, 24]}>
       {!simplified && (
@@ -36,12 +39,12 @@ const News = ({simplified}) => {
             <a href={news.url} target="_blank" rel="noreferrer">
               <div className="news-image-container">
                 <Title className="news-title" level={4}>{news.name}</Title>
-                <img src={news?.image?.thumbnail?.contentUrl } alt="" />
+                <img src={news?.image?.thumbnail?.contentUrl || demoImage} alt="" />
               </div>
               <p>{news.description.length > 100 ? `${news.description.substring(0, 100)}...` : news.description}</p>
               <div className="provider-container">
                 <div>
-                  <Avatar src={news.provider[0]?.image?.thumbnail?.contentUrl} alt="" />
+                  <Avatar src={news.provider[0]?.image?.thumbnail?.contentUrl || demoImage} alt="" />
                   <Text className="provider-name">{news.provider[0]?.name}</Text>
                 </div>
                 <Text>{moment(news.datePublished).startOf('ss').fromNow()}</Text>

@@ -8,7 +8,6 @@
    --border: #d9d9d9;
 }
 
-html, body {margin: 0; height: 100%; overflow: hidden}
 
 * {
     margin: 0;
@@ -36,7 +35,7 @@ a:hover{
 }
 
 .main{
-    width: 100%;
+    width: 85%;
     position: absolute;
     left:217px;
 }
@@ -363,6 +362,8 @@ width: 70%;
 }
 .show-more{
     margin-top: 0px !important;
+    position: relative;
+    right: 120px;
 }
 .exchange-image{
     margin: 0px 10px !important;

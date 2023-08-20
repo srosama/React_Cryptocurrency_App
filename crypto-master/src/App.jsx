@@ -43,7 +43,7 @@ const App = () => {
                       <News/>
                   </Route>
 
-                  <Route exact path='/crypto/:coindID'>
+                  <Route exact path='/cys/:coindID'>
                       <CryptoDet/>
                   </Route>
 

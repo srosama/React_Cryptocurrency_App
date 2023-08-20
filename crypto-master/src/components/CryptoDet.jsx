@@ -1,8 +1,9 @@
 import React from 'react'
+import HTMLReactParser from 'html-react-parser'
 
 function CryptoDet() {
   return (
-    <div>CryptoDet</div>
+    <div><h1>Osama</h1></div>
   )
 }
 

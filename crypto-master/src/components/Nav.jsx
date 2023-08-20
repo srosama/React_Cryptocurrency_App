@@ -18,6 +18,7 @@ const Nav = () => {
         <Menu.Item icon={<FundOutlined />}>
           <Link to="/cys">Cryptocurrencies</Link>
         </Menu.Item>
+  
         <Menu.Item icon={<MoneyCollectOutlined />}>
           <Link to="/exchanges">Exchanges</Link>
         </Menu.Item>
